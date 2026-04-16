@@ -953,7 +953,7 @@ function showPin(r){
   const m=r==='mgr'
   g('ps-icon').textContent=m?'🔐':'👷'
   g('ps-title').textContent=m?'Manager PIN':'Employee PIN'
-  g('ps-hint').textContent=m?'Default: 1234':'Default: 1111'
+  g('ps-hint').textContent=m?'Enter your 4-digit PIN':'Enter your 4-digit PIN'
   g('login-screen').style.display='none'
   g('pin-screen').style.display='flex'
 }
@@ -1636,7 +1636,7 @@ function saveVCC(vid){
   save();renderVCC();toast(`✅ ${S.vendors.find(v=>v.id===vid)?.name} contacts saved!`)
 }
 let cpRole='mgr'
-function togglePinChange(r){
+function togglePinChange(r){   cpRole=r||'mgr'   const card=g('pin-change-card')   if(!card){toast('Error finding PIN card');return}   const isOpen=card.style.display==='block'   card.style.display=isOpen?'none':'block'   if(!isOpen){     const title=g('pin-change-title')     if(title)title.textContent=r==='emp'?'👷 Change Employee PIN':'🔑 Change Manager PIN'     const cur=g('pin-cur');const nw=g('pin-new');const conf=g('pin-conf')     if(cur)cur.value='';if(nw)nw.value='';if(conf)conf.value=''   } }
   cpRole=r||'mgr'
   const card=g('pin-change-card')
   const isOpen=card.style.display!=='none'
